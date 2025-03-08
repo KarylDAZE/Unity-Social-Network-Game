@@ -7,11 +7,11 @@
     {
         BOTTOM = 0,
 
-        COMMON = 1,
+        NORMAL = 1,
 
-        POP = 2,
+        FUNCTION = 2,
 
-        CONST = 3,
+        TIPS = 3,
 
         TOP = 4,
     }

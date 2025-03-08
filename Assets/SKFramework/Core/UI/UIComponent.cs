@@ -94,7 +94,7 @@ namespace SK.Framework.UI
         /// <param name="data">视图数据</param>
         /// <param name="instant">是否立即显示</param>
         /// <returns>加载成功返回视图，否则返回null</returns>
-        public T LoadView<T>(string viewName, string viewResourcePath, ViewLevel level = ViewLevel.COMMON, IViewData data = null, bool instant = false) where T : UIView
+        public T LoadView<T>(string viewName, string viewResourcePath, ViewLevel level = ViewLevel.NORMAL, IViewData data = null, bool instant = false) where T : UIView
         {
             if (LoadView(viewName, viewResourcePath, level, out IUIView view, data, instant) == 0)
             {
@@ -110,7 +110,7 @@ namespace SK.Framework.UI
         /// <param name="data">视图数据</param>
         /// <param name="instant">是否立即显示</param>
         /// <returns>加载成功返回视图，否则返回null</returns>
-        public T LoadView<T>(ViewLevel level = ViewLevel.COMMON, IViewData data = null, bool instant = false) where T : UIView
+        public T LoadView<T>(ViewLevel level = ViewLevel.NORMAL, IViewData data = null, bool instant = false) where T : UIView
         {
             string viewName = typeof(T).Name;
             if (LoadView(viewName, viewName, level, out IUIView view, data, instant) == 0)
@@ -133,7 +133,7 @@ namespace SK.Framework.UI
         /// <param name="instant">是否立即显示</param>
         /// <param name="onLoading">加载中事件</param>
         /// <param name="onCompleted">加载完成事件</param>
-        public void LoadViewAsync<T>(string viewName, AssetInfo assetInfo, ViewLevel level = ViewLevel.COMMON, IViewData data = null, bool instant = false, Action<float> onLoading = null, Action<bool, T> onCompleted = null) where T : UIView
+        public void LoadViewAsync<T>(string viewName, AssetInfo assetInfo, ViewLevel level = ViewLevel.NORMAL, IViewData data = null, bool instant = false, Action<float> onLoading = null, Action<bool, T> onCompleted = null) where T : UIView
         {
             if (!viewDic.ContainsKey(viewName))
             {
@@ -173,7 +173,7 @@ namespace SK.Framework.UI
         /// <param name="instant">是否立即显示</param>
         /// <param name="onLoading">加载中事件</param>
         /// <param name="onCompleted">加载完成事件</param>
-        public void LoadViewAsync<T>(AssetInfo assetInfo, ViewLevel level = ViewLevel.COMMON, IViewData data = null, bool instant = false, Action<float> onLoading = null, Action<bool, T> onCompleted = null) where T : UIView
+        public void LoadViewAsync<T>(AssetInfo assetInfo, ViewLevel level = ViewLevel.NORMAL, IViewData data = null, bool instant = false, Action<float> onLoading = null, Action<bool, T> onCompleted = null) where T : UIView
         {
             LoadViewAsync(typeof(T).Name, assetInfo, level, data, instant, onLoading, onCompleted);
         }
