@@ -1,7 +1,8 @@
-﻿using ProtoBuf;
+﻿using MySql;
+using ProtoBuf;
 using System.Net;
 using System.Net.Sockets;
-
+using static SK.Framework.Sockets.ServerMessageHandler;
 namespace SK.Framework.Sockets
 {
     /// <summary>
@@ -31,6 +32,10 @@ namespace SK.Framework.Sockets
         private static void Init(int port)
         {
             Console.WriteLine("服务器启动...");
+
+            //database启动
+            MySqlHelper.Connect();
+
             //Socket Tcp协议
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             //服务器IP地址
@@ -164,7 +169,7 @@ namespace SK.Framework.Sockets
             //Console.ForegroundColor = ConsoleColor.Yellow;
             //Console.WriteLine(string.Format("接收到客户端{0}数据：{1}", client.socket.RemoteEndPoint, protoName));
             //处理消息
-            DealMessage(client, protoName, proto);
+            DealMessage(client, proto);
             //继续读取消息
             if (readBuff.length > 2)
             {
@@ -206,7 +211,7 @@ namespace SK.Framework.Sockets
             long ts = TimeUtility.GetTimeStamp();
             foreach (Client client in clients.Values)
             {
-                if(ts - client.lastPingTime > Client.pingInterval * 4)
+                if (ts - client.lastPingTime > Client.pingInterval * 4)
                 {
                     Close(client);
                     return;
@@ -247,7 +252,7 @@ namespace SK.Framework.Sockets
             {
                 //发送
                 client.socket.BeginSend(sendBytes, 0, sendBytes.Length, 0, SendCallback, client.socket);
-            }    
+            }
         }
         /// <summary>
         /// 向所有客户端发送协议(广播)
@@ -293,21 +298,16 @@ namespace SK.Framework.Sockets
 
         #region >> 数据处理
         //处理消息
-        private static void DealMessage(Client sender, string protoName, IExtensible message)
+        private static void DealMessage(Client sender, IExtensible proto)
         {
             //Console.WriteLine(protoName);
+            string protoName = proto.GetType().Name;
             switch (protoName)
             {
-                case "proto.AvatarProperty.AvatarProperty": OnAvatarPropertyMessage(sender, message); break;
+                case "AvatarProperty": OnAvatarProperty(sender, proto); break;
+                case "LoginArg": OnLoginArg(sender, proto); break;
                 default: break;
             }
-        }
-
-        //Avatar属性
-        private static void OnAvatarPropertyMessage(Client sender, IExtensible message)
-        {
-            //向除了Sender本身之外的客户端发送同步消息
-            Send(message, sender);
         }
         #endregion
     }
