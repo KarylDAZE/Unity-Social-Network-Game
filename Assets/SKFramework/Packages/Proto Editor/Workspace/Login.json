@@ -1,0 +1,1 @@
+[{"name":"LoginArg","fieldsList":[{"modifier":0,"type":5,"typeName":"FieldsType","name":"username","flag":1},{"modifier":0,"type":5,"typeName":"FieldsType","name":"password","flag":2}]},{"name":"LoginRes","fieldsList":[{"modifier":0,"type":2,"typeName":"FieldsType","name":"ErrCode","flag":1}]}]

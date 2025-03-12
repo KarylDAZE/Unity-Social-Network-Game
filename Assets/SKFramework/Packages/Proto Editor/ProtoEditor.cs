@@ -105,7 +105,7 @@ namespace SK.Framework.Sockets
             {
                 modifier = ModifierType.Required;
                 type = FieldsType.String;
-                name = "FieldsName"; 
+                name = "FieldsName";
                 typeName = "FieldsType";
                 this.flag = flag;
             }
@@ -319,7 +319,7 @@ namespace SK.Framework.Sockets
                 }
                 else
                 {
-                    string protoFilePath = EditorUtility.SaveFilePanel("Generate Proto File", Application.dataPath, fileName, "proto");
+                    string protoFilePath = "protogen/proto/" + fileName + ".proto";
                     if (!string.IsNullOrEmpty(protoFilePath))
                     {
                         StringBuilder protoContent = new StringBuilder();
@@ -374,7 +374,8 @@ namespace SK.Framework.Sockets
             if (GUILayout.Button("Create .bat"))
             {
                 //选择路径（protogen.exe所在的文件夹路径）
-                string rootPath = EditorUtility.OpenFolderPanel("Create .bat file（protogen.exe所在的文件夹）", Application.dataPath, string.Empty);
+                // string rootPath = EditorUtility.OpenFolderPanel("Create .bat file（protogen.exe所在的文件夹）", Application.dataPath, string.Empty);
+                string rootPath = "protogen";
                 //取消
                 if (string.IsNullOrEmpty(rootPath)) return;
                 //protogen.exe文件路径
@@ -397,7 +398,7 @@ namespace SK.Framework.Sockets
                     {
                         string proto = protos[i].Name;
                         //拼接编译指令
-                        sb.Append(rootPath + @"/protogen.exe -i:proto\" + proto + @" -o:cs\" + proto.Replace(".proto", ".cs") + "\r\n");
+                        sb.Append(@"protogen.exe -i:proto\" + proto + @" -o:cs\" + proto.Replace(".proto", ".cs") + "\r\n");
                     }
                     sb.Append("pause");
 

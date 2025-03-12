@@ -113,6 +113,8 @@ namespace SK.Framework.UI
         public void Init(IViewData data = null, bool instant = false)
         {
             OnInit(data);
+            BindEvents();
+            BindListeners();
 
             //执行动画开始事件
             onVisible.onBeganEvent?.Invoke();
@@ -169,5 +171,7 @@ namespace SK.Framework.UI
         protected virtual void OnShow(IViewData data) { }
         protected virtual void OnHide() { }
         protected virtual void OnUnload() { }
+        protected virtual void BindEvents() { }
+        protected virtual void BindListeners() { }
     }
 }

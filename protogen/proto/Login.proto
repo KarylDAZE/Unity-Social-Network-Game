@@ -1,0 +1,9 @@
+message LoginArg
+{
+    required string username = 1;
+    required string password = 2;
+}
+message LoginRes
+{
+    required int32 ErrCode = 1;
+}

@@ -29,7 +29,7 @@ namespace SK.Framework.Sockets
         private int msgCount;
         //每一次Update处理的消息量
         private readonly int MAX_MESSAGE_FIRE = 10;
-        
+
         /// <summary>
         /// 是否连接
         /// </summary>
@@ -210,7 +210,7 @@ namespace SK.Framework.Sockets
                 }
             }
         }
-        
+
         private void OnDestroy()
         {
             Close();
@@ -300,6 +300,7 @@ namespace SK.Framework.Sockets
             switch (protoName)
             {
                 case "AvatarProperty": Main.Events.Publish(ProtoEventID.AvatarProperty, proto); break;
+                case "LoginRes": Main.Events.Publish(ProtoEventID.LoginRes, proto); break;
                 default: Debug.Log(string.Format("未知协议类型：{0}", protoName)); break;
             }
         }

@@ -1,3 +1,4 @@
-C:/UnityProjects/HW_Multiplayer/protogen/protogen.exe -i:proto\AvatarProperty.proto -o:cs\AvatarProperty.cs
-C:/UnityProjects/HW_Multiplayer/protogen/protogen.exe -i:proto\PingPong.proto -o:cs\PingPong.cs
+protogen.exe -i:proto\AvatarProperty.proto -o:cs\AvatarProperty.cs
+protogen.exe -i:proto\ClientLogin.proto -o:cs\ClientLogin.cs
+protogen.exe -i:proto\Login.proto -o:cs\Login.cs
 pause
