@@ -299,7 +299,6 @@ namespace SK.Framework.Sockets
             string protoName = proto.GetType().Name;
             switch (protoName)
             {
-                case "AvatarProperty": Main.Events.Publish(ProtoEventID.AvatarProperty, proto); break;
                 case "LoginRes": Main.Events.Publish(ProtoEventID.LoginRes, proto); break;
                 default: Debug.Log(string.Format("未知协议类型：{0}", protoName)); break;
             }

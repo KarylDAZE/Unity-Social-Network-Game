@@ -9,7 +9,5 @@ namespace SK.Framework
     public class CustomComponent : MonoBehaviour
     {
         public NetworkManager Network;
-
-        public AvatarManager AvatarManager;
     }
 }
