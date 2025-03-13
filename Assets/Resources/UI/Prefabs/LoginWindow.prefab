@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1977837561931793548}
   - component: {fileID: 5215783751839905932}
   m_Layer: 5
-  m_Name: AccountTitle_Text
+  m_Name: UsernameTitle_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 1435337348148119719}
   - component: {fileID: 8866222024631934869}
   m_Layer: 5
-  m_Name: Account_Text
+  m_Name: Username_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -748,7 +748,7 @@ GameObject:
   - component: {fileID: 1469537432177053176}
   - component: {fileID: 8184338872606736898}
   m_Layer: 5
-  m_Name: Account_InputFied
+  m_Name: Username_InputFied
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1253,6 +1253,10 @@ MonoBehaviour:
       audioClip: {fileID: 0}
       databaseName: 
       clipName: 
+  Username_Text: {fileID: 8866222024631934869}
+  Password_Text: {fileID: 568115256852475624}
+  Login_Button: {fileID: 6794137415740692554}
+  Exit_Button: {fileID: 8116117909649038701}
 --- !u!1 &6900426340416345199
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,17 +8,21 @@ namespace UI
 {
     public class LoginWindow : UIView
     {
+        [SerializeField]
         private Text Username_Text;
+        [SerializeField]
         private Text Password_Text;
+        [SerializeField]
         private Button Login_Button;
+        [SerializeField]
         private Button Exit_Button;
 
         protected override void OnInit(IViewData data)
         {
-            Username_Text = GameObject.Find("Account_Text").GetComponent<Text>();
-            Password_Text = GameObject.Find("Password_Text").GetComponent<Text>();
-            Login_Button = GameObject.Find("Login_Button").GetComponent<Button>();
-            Exit_Button = GameObject.Find("Exit_Button").GetComponent<Button>();
+            // Username_Text = GameObject.Find("Account_Text").GetComponent<Text>();
+            // Password_Text = GameObject.Find("Password_Text").GetComponent<Text>();
+            // Login_Button = GameObject.Find("Login_Button").GetComponent<Button>();
+            // Exit_Button = transform.Find("Exit_Button").GetComponent<Button>();
         }
 
         protected override void BindListeners()
@@ -28,7 +32,12 @@ namespace UI
                 //check input
                 if (string.IsNullOrEmpty(Username_Text.text) || string.IsNullOrEmpty(Password_Text.text))
                 {
-                    Debug.Log("Please input username and password");
+                    Main.UI.LoadView("TipsWindow", UIConst.TipsWindow, ViewLevel.TIPS, out _, new TipsData
+                    {
+                        tipsText = "Please input username and password",
+                        isShowConfirm = true,
+                        isShowCancel = false,
+                    }, true);
                     return;
                 }
 
@@ -59,14 +68,16 @@ namespace UI
         void OnLoginRes(IExtensible proto)
         {
             var res = proto as proto.Login.LoginRes;
-            if (res.ErrCode == 0)
+            string tipsText = 0 == res.ErrCode ? "Login Success!" : "Login Failed!";
+            Main.UI.LoadView("TipsWindow", UIConst.TipsWindow, ViewLevel.TIPS, out _, new TipsData
             {
-                Debug.Log("Login Success");
-                Hide();
-            }
-            else
+                tipsText = tipsText,
+                isShowConfirm = true,
+                isShowCancel = false,
+            }, true);
+            if (0 == res.ErrCode)
             {
-                Debug.Log("Login Failed");
+                Unload();
             }
         }
     }
