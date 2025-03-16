@@ -8,7 +8,7 @@ namespace UI
     public class MainWindow : UIView
     {
         [SerializeField]
-        private GameObject PlayerInfo;
+        private Button PlayerInfo_Button;
         [SerializeField]
         private Image Avatar_Image;
         [SerializeField]
@@ -29,6 +29,10 @@ namespace UI
 
         protected override void BindListeners()
         {
+            Chat_Button.onClick.AddListener(() =>
+            {
+                Main.UI.LoadView("ChatWindow", UIConst.ChatWindow, ViewLevel.FUNCTION, out _, null, true);
+            });
 
             Exit_Button.onClick.AddListener(() =>
             {

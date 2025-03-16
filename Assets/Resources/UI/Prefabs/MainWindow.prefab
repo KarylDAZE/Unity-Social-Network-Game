@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1809882926898020066}
   - component: {fileID: 3269652028466609904}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Buttons_Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 1704690116818525780}
   - component: {fileID: 8569765107952857572}
   - component: {fileID: 6438427321097445896}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Rank_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 655105278158587644}
   - component: {fileID: 2111362840622676048}
   - component: {fileID: 1825438485521363153}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Chat_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 1230887552138411041}
   - component: {fileID: 1194888419810561437}
   - component: {fileID: 6325021300814207601}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CardGame_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -397,7 +397,7 @@ GameObject:
   - component: {fileID: 3159772777224089760}
   - component: {fileID: 4344626930533467088}
   - component: {fileID: 5265807222307700598}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: MainWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -563,6 +563,13 @@ MonoBehaviour:
       audioClip: {fileID: 0}
       databaseName: 
       clipName: 
+  PlayerInfo_Button: {fileID: 5094329958887698413}
+  Avatar_Image: {fileID: 4825516260290261897}
+  Username_Text: {fileID: 1782043599276204898}
+  Chat_Button: {fileID: 5759787472155128837}
+  CardGame_Button: {fileID: 6325021300814207601}
+  Rank_Button: {fileID: 6438427321097445896}
+  Exit_Button: {fileID: 288652448801095462}
 --- !u!1 &1713266105218943322
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,8 +703,9 @@ GameObject:
   - component: {fileID: 2321904191446015344}
   - component: {fileID: 6532318274586518808}
   - component: {fileID: 1942029790883546465}
-  m_Layer: 0
-  m_Name: PlayerInfo_Object
+  - component: {fileID: 5094329958887698413}
+  m_Layer: 5
+  m_Name: PlayerInfo_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -788,6 +796,50 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5094329958887698413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2839656916243525460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1942029790883546465}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3397816692442250651
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,7 +851,7 @@ GameObject:
   - component: {fileID: 7216345809000095328}
   - component: {fileID: 2100342487815657735}
   - component: {fileID: 2046587484097907403}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CardGame_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -878,7 +930,7 @@ GameObject:
   - component: {fileID: 4701468454665728892}
   - component: {fileID: 4422028876003840129}
   - component: {fileID: 4825516260290261897}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Avatar_Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -953,7 +1005,7 @@ GameObject:
   - component: {fileID: 3824994886403017645}
   - component: {fileID: 8777864780517766389}
   - component: {fileID: 6683387963786162279}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1029,7 +1081,7 @@ GameObject:
   - component: {fileID: 8909455015862190810}
   - component: {fileID: 5599885395696615819}
   - component: {fileID: 5759787472155128837}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Chat_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1149,7 +1201,7 @@ GameObject:
   - component: {fileID: 4669515472403625767}
   - component: {fileID: 443455565052535410}
   - component: {fileID: 1106465633042124194}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Rank_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1228,7 +1280,7 @@ GameObject:
   - component: {fileID: 8050609798550572087}
   - component: {fileID: 3506904185460655263}
   - component: {fileID: 1782043599276204898}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Username_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
