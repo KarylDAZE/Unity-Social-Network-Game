@@ -25,8 +25,6 @@ namespace UI
         private Button Confirm_Button;
         [SerializeField]
         private Button Cancel_Button;
-        [SerializeField]
-        private Button Exit_Button;
 
         protected override void OnInit(IViewData data)
         {
@@ -44,11 +42,6 @@ namespace UI
                 Unload();
             });
             Cancel_Button.onClick.AddListener(() =>
-            {
-                tipsData.onCancel?.Invoke();
-                Unload();
-            });
-            Exit_Button.onClick.AddListener(() =>
             {
                 tipsData.onCancel?.Invoke();
                 Unload();

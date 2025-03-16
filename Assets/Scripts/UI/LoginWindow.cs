@@ -74,6 +74,10 @@ namespace UI
         {
             var res = proto as proto.Login.LoginRes;
             string tipsText = 0 == res.ErrCode ? "Login Success!" : "Login Failed!";
+            if (0 == res.ErrCode)
+            {
+                Mgr.LoginMgr.Instance.Username = Username_Text.text;
+            }
             Main.UI.LoadView("TipsWindow", UIConst.TipsWindow, ViewLevel.TIPS, out _, new TipsData
             {
                 tipsText = tipsText,
@@ -82,13 +86,12 @@ namespace UI
                 onConfirm = () =>
                 {
                     if (0 == res.ErrCode)
+                    {
                         Main.UI.LoadView("MainWindow", UIConst.MainWindow, ViewLevel.NORMAL, out _, null, true);
-                }
+                        Unload();
+                    }
+                },
             }, true);
-            if (0 == res.ErrCode)
-            {
-                Unload();
-            }
         }
     }
 }
