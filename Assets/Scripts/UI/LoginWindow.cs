@@ -19,10 +19,6 @@ namespace UI
 
         protected override void OnInit(IViewData data)
         {
-            // Username_Text = GameObject.Find("Account_Text").GetComponent<Text>();
-            // Password_Text = GameObject.Find("Password_Text").GetComponent<Text>();
-            // Login_Button = GameObject.Find("Login_Button").GetComponent<Button>();
-            // Exit_Button = transform.Find("Exit_Button").GetComponent<Button>();
         }
 
         protected override void BindListeners()
@@ -52,11 +48,20 @@ namespace UI
             });
             Exit_Button.onClick.AddListener(() =>
             {
+                Main.UI.LoadView("TipsWindow", UIConst.TipsWindow, ViewLevel.TIPS, out _, new TipsData
+                {
+                    tipsText = "确定要退出游戏吗",
+                    isShowConfirm = true,
+                    isShowCancel = true,
+                    onConfirm = () =>
+                    {
 #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
+                        UnityEditor.EditorApplication.isPlaying = false;
 #else
-                Application.Quit();
+                        Application.Quit();
 #endif
+                    }
+                }, true);
             });
         }
 
@@ -74,6 +79,11 @@ namespace UI
                 tipsText = tipsText,
                 isShowConfirm = true,
                 isShowCancel = false,
+                onConfirm = () =>
+                {
+                    if (0 == res.ErrCode)
+                        Main.UI.LoadView("MainWindow", UIConst.MainWindow, ViewLevel.NORMAL, out _, null, true);
+                }
             }, true);
             if (0 == res.ErrCode)
             {

@@ -31,10 +31,6 @@ namespace UI
         protected override void OnInit(IViewData data)
         {
             tipsData = (TipsData)data;
-            // Tips_Text = GameObject.Find("Tips_Text").GetComponent<Text>();
-            // Confirm_Button = GameObject.Find("Confirm_Button").GetComponent<Button>();
-            // Cancel_Button = GameObject.Find("Cancel_Button").GetComponent<Button>();
-            // Exit_Button = GameObject.Find("Exit_Button").GetComponent<Button>();
             Confirm_Button.gameObject.SetActive(tipsData.isShowConfirm);
             Tips_Text.text = tipsData.tipsText;
             Cancel_Button.gameObject.SetActive(tipsData.isShowCancel);
