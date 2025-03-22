@@ -5,4 +5,5 @@ public static class UIConst
     public const string MainWindow = "UI/Prefabs/MainWindow";
     public const string ChatWindow = "UI/Prefabs/ChatWindow";
     public const string PlayerInfoWidget = "UI/Prefabs/PlayerInfoWidget";
+    public const string ChatMessageWidget = "UI/Prefabs/ChatMessageWidget";
 }

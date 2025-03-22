@@ -31,7 +31,8 @@ namespace UI
         {
             Chat_Button.onClick.AddListener(() =>
             {
-                Main.UI.LoadView("ChatWindow", UIConst.ChatWindow, ViewLevel.FUNCTION, out _, null, true);
+                if (-1 == Main.UI.LoadView("ChatWindow", UIConst.ChatWindow, ViewLevel.FUNCTION, out _, null, true))
+                    Main.UI.ShowView("ChatWindow");
             });
 
             Exit_Button.onClick.AddListener(() =>

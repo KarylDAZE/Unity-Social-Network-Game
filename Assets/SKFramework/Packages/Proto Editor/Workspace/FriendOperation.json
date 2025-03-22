@@ -1,0 +1,1 @@
+[{"name":"FriendOperationArg","fieldsList":[{"modifier":0,"type":2,"typeName":"FieldsType","name":"id","flag":1},{"modifier":0,"type":4,"typeName":"FieldsType","name":"isAdd","flag":2}]},{"name":"FriendOperationRes","fieldsList":[{"modifier":0,"type":2,"typeName":"FieldsType","name":"ErrCode","flag":1}]}]

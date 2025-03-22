@@ -23,7 +23,10 @@ namespace SK.Framework.Sockets
         /// 时间间隔
         /// </summary>
         public static long pingInterval = 30;
-
+        /// <summary>
+        /// 用户ID
+        /// </summary>
+        public int userId = 0;
         /// <summary>
         /// 构造函数
         /// </summary>

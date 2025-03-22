@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using SK.Framework;
 using SK.Framework.UI;
 using ProtoBuf;
+using Mgr;
 
 namespace UI
 {
@@ -37,15 +38,9 @@ namespace UI
                     return;
                 }
 
-                //send proto
-                var loginArg = new proto.Login.LoginArg
-                {
-                    username = Username_Text.text,
-                    //password encryption
-                    password = Password_Text.text
-                };
-                Main.Custom.Network.Send(loginArg);
+                LoginMgr.Instance.SendLogin(Username_Text.text, Password_Text.text);
             });
+
             Exit_Button.onClick.AddListener(() =>
             {
                 Main.UI.LoadView("TipsWindow", UIConst.TipsWindow, ViewLevel.TIPS, out _, new TipsData
@@ -67,17 +62,12 @@ namespace UI
 
         protected override void BindEvents()
         {
-            Main.Events.Subscribe<IExtensible>(Multiplayer.ProtoEventID.LoginRes, OnLoginRes);
+            Main.Events.Subscribe<bool>(Multiplayer.ProtoEventID.LoginRes, OnLoginRes);
         }
 
-        void OnLoginRes(IExtensible proto)
+        void OnLoginRes(bool isSuccess)
         {
-            var res = proto as proto.Login.LoginRes;
-            string tipsText = 0 == res.ErrCode ? "Login Success!" : "Login Failed!";
-            if (0 == res.ErrCode)
-            {
-                Mgr.LoginMgr.Instance.Username = Username_Text.text;
-            }
+            string tipsText = isSuccess ? "Login Success!" : "Login Failed!";
             Main.UI.LoadView("TipsWindow", UIConst.TipsWindow, ViewLevel.TIPS, out _, new TipsData
             {
                 tipsText = tipsText,
@@ -85,7 +75,7 @@ namespace UI
                 isShowCancel = false,
                 onConfirm = () =>
                 {
-                    if (0 == res.ErrCode)
+                    if (isSuccess)
                     {
                         Main.UI.LoadView("MainWindow", UIConst.MainWindow, ViewLevel.NORMAL, out _, null, true);
                         Unload();

@@ -1,0 +1,20 @@
+message MessageArg
+{
+    required string text = 1;
+    required int32 FriendId = 2;
+}
+message MessageRes
+{
+    repeated UserMessage messages = 1;
+    required int32 FriendId = 2;
+}
+message UserMessage
+{
+    required string text = 1;
+    required PlayerInfo playerInfo = 2;
+}
+message PlayerInfo
+{
+    required int32 id = 1;
+    required string username = 2;
+}

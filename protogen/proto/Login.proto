@@ -6,4 +6,6 @@ message LoginArg
 message LoginRes
 {
     required int32 ErrCode = 1;
+    required int32 id = 2;
+    required string username = 3;
 }

@@ -1,6 +1,8 @@
 using UnityEngine;
 using SK.Framework;
 using SK.Framework.UI;
+using Multiplayer;
+using ProtoBuf;
 
 namespace Mgr
 {
@@ -19,18 +21,10 @@ namespace Mgr
             }
         }
 
-        private string username;
-        public string Username
-        {
-            get
-            {
-                return username;
-            }
-            set
-            {
-                username = value;
-            }
-        }
+        public string Username;
+
+        public int Id;
+
 
         void Awake()
         {
@@ -56,10 +50,23 @@ namespace Mgr
             Main.Custom.Network.Connect("127.0.0.1", 8801);
         }
 
-        // Update is called once per frame
-        void Update()
+        public void SendLogin(string username, string password)
         {
+            var loginArg = new proto.Login.LoginArg
+            {
+                username = username,
+                //password encryption
+                password = password
+            };
+            Main.Custom.Network.Send(loginArg);
+        }
 
+        public void OnLogin(IExtensible proto)
+        {
+            var res = proto as proto.Login.LoginRes;
+            Id = res.id;
+            Username = res.username;
+            Main.Events.Publish(ProtoEventID.LoginRes, 0 == res.ErrCode);
         }
     }
 }

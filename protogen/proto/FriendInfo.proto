@@ -1,0 +1,14 @@
+message FriendInfoArg
+{
+}
+message FriendInfoRes
+{
+    required int32 ErrCode = 1;
+    repeated PlayerInfo FriendList = 2;
+}
+message PlayerInfo
+{
+    required int32 id = 1;
+    required string username = 2;
+    required bool isFriend = 3;
+}

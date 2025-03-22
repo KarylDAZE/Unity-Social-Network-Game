@@ -16,7 +16,7 @@ namespace SK.Framework.Sockets
         //用于检测可读性的Socket列表
         private readonly static List<Socket> checkReadableList = new List<Socket>();
         //客户端Socket及客户端信息字典
-        private readonly static Dictionary<Socket, Client> clients = new Dictionary<Socket, Client>();
+        public readonly static Dictionary<Socket, Client> clients = new Dictionary<Socket, Client>();
         //写入队列
         private readonly static Queue<ByteArray> writeQueue = new Queue<ByteArray>();
         #endregion
@@ -304,8 +304,10 @@ namespace SK.Framework.Sockets
             string protoName = proto.GetType().Name;
             switch (protoName)
             {
-                case "AvatarProperty": OnAvatarProperty(sender, proto); break;
                 case "LoginArg": OnLoginArg(sender, proto); break;
+                case "FriendInfoArg": OnFriendInfoArg(sender); break;
+                case "FriendOperationArg": OnFriendOperationArg(sender, proto); break;
+                case "MessageArg": OnMessageArg(sender, proto); break;
                 default: break;
             }
         }

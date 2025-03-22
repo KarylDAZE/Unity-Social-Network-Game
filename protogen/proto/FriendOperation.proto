@@ -1,0 +1,9 @@
+message FriendOperationArg
+{
+    required int32 id = 1;
+    required bool isAdd = 2;
+}
+message FriendOperationRes
+{
+    required int32 ErrCode = 1;
+}
