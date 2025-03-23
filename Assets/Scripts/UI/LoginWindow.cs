@@ -10,9 +10,11 @@ namespace UI
     public class LoginWindow : UIView
     {
         [SerializeField]
-        private Text Username_Text;
+        private InputField Username_InputField;
         [SerializeField]
-        private Text Password_Text;
+        private InputField Password_InputField;
+        [SerializeField]
+        private Toggle RemeberPassword_Toggle;
         [SerializeField]
         private Button Login_Button;
         [SerializeField]
@@ -20,6 +22,14 @@ namespace UI
 
         protected override void OnInit(IViewData data)
         {
+            //set input
+            UserInfo userInfo = LoginMgr.Instance.GetUserInfo();
+            if (userInfo != null)
+            {
+                Username_InputField.text = userInfo.Username;
+                Password_InputField.text = userInfo.Password;
+                RemeberPassword_Toggle.isOn = userInfo.IsRemember;
+            }
         }
 
         protected override void BindListeners()
@@ -27,7 +37,7 @@ namespace UI
             Login_Button.onClick.AddListener(() =>
             {
                 //check input
-                if (string.IsNullOrEmpty(Username_Text.text) || string.IsNullOrEmpty(Password_Text.text))
+                if (string.IsNullOrEmpty(Username_InputField.text) || string.IsNullOrEmpty(Password_InputField.text))
                 {
                     Main.UI.LoadView("TipsWindow", UIConst.TipsWindow, ViewLevel.TIPS, out _, new TipsData
                     {
@@ -38,7 +48,7 @@ namespace UI
                     return;
                 }
 
-                LoginMgr.Instance.SendLogin(Username_Text.text, Password_Text.text);
+                LoginMgr.Instance.SendLogin(Username_InputField.text, Password_InputField.text);
             });
 
             Exit_Button.onClick.AddListener(() =>
@@ -77,6 +87,7 @@ namespace UI
                 {
                     if (isSuccess)
                     {
+                        LoginMgr.Instance.SetUserInfo(Username_InputField.text, Password_InputField.text, RemeberPassword_Toggle.isOn);
                         Main.UI.LoadView("MainWindow", UIConst.MainWindow, ViewLevel.NORMAL, out _, null, true);
                         Unload();
                     }
