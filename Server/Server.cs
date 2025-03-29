@@ -131,6 +131,7 @@ namespace SK.Framework.Sockets
             if (length <= 0)
             {
                 Close(client);
+                Logout(client);
                 return;
             }
             //处理数据
@@ -308,6 +309,7 @@ namespace SK.Framework.Sockets
                 case "FriendInfoArg": OnFriendInfoArg(sender); break;
                 case "FriendOperationArg": OnFriendOperationArg(sender, proto); break;
                 case "MessageArg": OnMessageArg(sender, proto); break;
+                case "MatchArg": OnMatchArg(sender, proto); break;
                 default: break;
             }
         }

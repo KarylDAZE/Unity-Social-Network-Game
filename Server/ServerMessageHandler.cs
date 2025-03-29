@@ -1,6 +1,7 @@
 using System.Data;
 using System.Diagnostics;
 using MySql;
+using proto.CardGame;
 using ProtoBuf;
 
 namespace SK.Framework.Sockets
@@ -13,21 +14,26 @@ namespace SK.Framework.Sockets
     public static class ServerMessageHandler
     {
         private const int MAX_MESSAGE_COUNT = 50;
-        public static void OnAvatarProperty(Client sender, IExtensible proto)
-        {
-            Server.Send(proto, sender);
-        }
+        private static Dictionary<string, bool> loginedUsers = new Dictionary<string, bool>();
+
         public static void OnLoginArg(Client sender, IExtensible proto)
         {
             var res = new proto.Login.LoginRes
             {
                 ErrCode = (int)ErrCode.SUCCESS
             };
-            // database check
             var arg = proto as proto.Login.LoginArg;
             if (null == arg)
             {
                 Debug.WriteLine("Invalid proto type");
+                return;
+            }
+
+            // 检查是否已经登录
+            if (loginedUsers.ContainsKey(arg.username))
+            {
+                res.ErrCode = (int)ErrCode.COMMON_FAIL;
+                Server.Send(sender, res);
                 return;
             }
 
@@ -52,6 +58,16 @@ namespace SK.Framework.Sockets
                     { "password", arg.password },
                     { "avatar_base64", "" }
                 });
+                // 插入新的一行到score表
+                int userId;
+                dataTable = MySqlHelper.GetTable("user_info");
+                foundRows = dataTable.Select("username = '" + arg.username + "'");
+                userId = Convert.ToInt32(foundRows[0]["id"]);
+                MySqlHelper.InsertRow("score", new Dictionary<string, object>()
+                    {
+                        { "user_id", userId },
+                        { "score", 0 }
+                    });
             }
             if (res.ErrCode == (int)ErrCode.SUCCESS)
             {
@@ -59,9 +75,18 @@ namespace SK.Framework.Sockets
                 dataTable = MySqlHelper.GetTable("user_info");
                 foundRows = dataTable.Select("username = '" + arg.username + "'");
                 res.id = sender.userId = Convert.ToInt32(foundRows[0]["id"]);
-                res.username = arg.username;
+                res.username = sender.username = arg.username;
+                loginedUsers.Add(arg.username, true);
             }
             Server.Send(sender, res);
+        }
+
+        public static void Logout(Client sender)
+        {
+            if (loginedUsers.ContainsKey(sender.username))
+            {
+                loginedUsers.Remove(sender.username);
+            }
         }
 
         public static void OnFriendInfoArg(Client sender)
@@ -210,6 +235,39 @@ namespace SK.Framework.Sockets
                     }
                 }
             }
+        }
+
+        public static void OnMatchArg(Client sender, IExtensible proto)
+        {
+            var arg = proto as proto.Match.MatchArg;
+            CardGameMgr.OnMatchArg(sender, arg);
+        }
+
+        public static void SendMatchRes(Client sender, bool isBeginGame, int score, string playerUsername)
+        {
+            var res = new proto.Match.MatchRes
+            {
+                isBeginGame = isBeginGame,
+                Score = score,
+                PlayerUsername = playerUsername
+            };
+            Server.Send(sender, res);
+        }
+
+        public static void OnCardGameArg(Client sender, IExtensible proto)
+        {
+            var arg = proto as proto.CardGame.CardGameArg;
+            if (null == arg)
+            {
+                Debug.WriteLine("Invalid proto type");
+                return;
+            }
+            // CardGameMgr.OnCardGameArg(sender, arg);
+        }
+
+        public static void SendCardGameRes(Client sender, CardGameRes cardGameRes)
+        {
+            Server.Send(sender, cardGameRes);
         }
     }
 }

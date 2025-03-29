@@ -28,6 +28,11 @@ namespace MySql
                 {
                     // Optionally read data from the reader if needed
                 }
+                MySqlCommand createScoreTableCommand = new(MySqlStatement.createScoreTable, connection);
+                using (MySqlDataReader readerScore = createScoreTableCommand.ExecuteReader())
+                {
+                    // Optionally read data from the reader if needed
+                }
             }
             catch (Exception ex)
             {

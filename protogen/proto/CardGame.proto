@@ -1,0 +1,15 @@
+message CardGameArg
+{
+    required int32 cardId = 1;
+}
+message CardGameRes
+{
+    optional bool isGameOver = 1;
+    optional bool isWin = 2;
+    optional bool isTurnOver = 3;
+    optional bool isPlayerConfirmed = 4;
+    optional int32 playerCardId = 5;
+    optional int32 playHp = 6;
+    optional int32 selfHp = 7;
+    optional int32 selfScore = 8;
+}

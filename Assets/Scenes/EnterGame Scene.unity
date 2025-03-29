@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 306200388}
   - component: {fileID: 306200387}
   - component: {fileID: 306200389}
+  - component: {fileID: 306200390}
   m_Layer: 0
   m_Name: GameRoot
   m_TagString: Untagged
@@ -275,6 +276,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerInfoButton: -54123741
+--- !u!114 &306200390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306200386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee73dc1c6cc518b4f919a22d406b1827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &739824686
 PrefabInstance:
   m_ObjectHideFlags: 0

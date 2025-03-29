@@ -1,0 +1,10 @@
+message MatchArg
+{
+    required bool isBeginGame = 1;
+}
+message MatchRes
+{
+    required bool isBeginGame = 1;
+    required int32 Score = 2;
+    required string PlayerUsername = 3;
+}

@@ -9,5 +9,7 @@ namespace Multiplayer
         public static readonly int FriendInfoRes = typeof(proto.FriendInfo.FriendInfoRes).GetHashCode();
         public static readonly int FriendOperationRes = typeof(proto.FriendOperation.FriendOperationRes).GetHashCode();
         public static readonly int MessageRes = typeof(proto.Message.MessageRes).GetHashCode();
+        public static readonly int MatchRes = typeof(proto.Match.MatchRes).GetHashCode();
+        public static readonly int CardGameRes = typeof(proto.CardGame.CardGameRes).GetHashCode();
     }
 }

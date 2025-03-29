@@ -1,0 +1,1 @@
+[{"name":"MatchArg","fieldsList":[{"modifier":0,"type":4,"typeName":"FieldsType","name":"isBeginGame","flag":1}]},{"name":"MatchRes","fieldsList":[{"modifier":0,"type":4,"typeName":"FieldsType","name":"isBeginGame","flag":1},{"modifier":0,"type":2,"typeName":"FieldsType","name":"Score","flag":2},{"modifier":0,"type":5,"typeName":"FieldsType","name":"PlayerUsername","flag":3}]}]

@@ -35,6 +35,12 @@ namespace UI
                     Main.UI.ShowView("ChatWindow");
             });
 
+            CardGame_Button.onClick.AddListener(() =>
+            {
+                if (-1 == Main.UI.LoadView("CardGameWindow", UIConst.CardGameWindow, ViewLevel.FUNCTION, out _, null, true))
+                    Main.UI.ShowView("CardGameWindow");
+            });
+
             Exit_Button.onClick.AddListener(() =>
             {
                 Main.UI.LoadView("TipsWindow", UIConst.TipsWindow, ViewLevel.TIPS, out _, new TipsData

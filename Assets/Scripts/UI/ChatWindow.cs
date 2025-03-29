@@ -5,7 +5,6 @@ using SK.Framework.UI;
 using Mgr;
 using Multiplayer;
 using proto.Message;
-using System.Collections.Generic;
 
 namespace UI
 {

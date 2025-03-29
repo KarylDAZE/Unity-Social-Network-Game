@@ -27,5 +27,12 @@ namespace MySql
             content TEXT NOT NULL COMMENT '消息内容',
             create_time DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '消息发送时间'
         ) COMMENT '聊天记录表'";
+
+        public const string createScoreTable = @"CREATE TABLE IF NOT EXISTS score(
+            id INT NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Primary Key',
+            user_id INT NOT NULL COMMENT '用户ID',
+            score INT NOT NULL COMMENT '分数',
+            create_time DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '记录创建时间'
+        ) COMMENT '分数记录表'";
     }
 }

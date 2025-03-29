@@ -4,8 +4,6 @@ using UnityEngine;
 using System.Linq;
 using System.Net.Sockets;
 using System.Collections.Generic;
-
-using Multiplayer;
 using Mgr;
 
 namespace SK.Framework.Sockets
@@ -304,6 +302,8 @@ namespace SK.Framework.Sockets
                 case "FriendInfoRes": FriendMgr.Instance.OnFriendInfo(proto); break;
                 case "FriendOperationRes": FriendMgr.Instance.OnFriendOperation(proto); break;
                 case "MessageRes": FriendMgr.Instance.OnMessage(proto); break;
+                case "MatchRes": CardGameMgr.Instance.OnMatch(proto); break;
+                case "CardGameRes": CardGameMgr.Instance.OnCardGame(proto); break;
                 default: Debug.Log(string.Format("未知协议类型：{0}", protoName)); break;
             }
         }

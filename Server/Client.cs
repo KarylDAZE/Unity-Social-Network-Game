@@ -28,6 +28,10 @@ namespace SK.Framework.Sockets
         /// </summary>
         public int userId = 0;
         /// <summary>
+        /// 用户名
+        /// </summary>
+        public string username = "";
+        /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="socket">套接字</param>
