@@ -287,6 +287,7 @@ namespace SK.Framework.Sockets
         /// <param name="client">客户端</param>
         public static void Close(Client client)
         {
+            CardGameMgr.ExitCardGame(client);
             Console.WriteLine($"客户端关闭：{client.socket.RemoteEndPoint}");
             //TODO：通知其他客户端
 
@@ -310,6 +311,7 @@ namespace SK.Framework.Sockets
                 case "FriendOperationArg": OnFriendOperationArg(sender, proto); break;
                 case "MessageArg": OnMessageArg(sender, proto); break;
                 case "MatchArg": OnMatchArg(sender, proto); break;
+                case "CardGameArg": OnCardGameArg(sender, proto); break;
                 default: break;
             }
         }

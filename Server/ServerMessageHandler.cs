@@ -140,13 +140,13 @@ namespace SK.Framework.Sockets
 
         public static void OnCardGameArg(Client sender, IExtensible proto)
         {
-            var arg = proto as proto.CardGame.CardGameArg;
+            var arg = proto as CardGameArg;
             if (null == arg)
             {
                 Debug.WriteLine("Invalid proto type");
                 return;
             }
-            // CardGameMgr.OnCardGameArg(sender, arg);
+            CardGameMgr.OnCardGameArg(sender, arg);
         }
 
         public static void SendCardGameRes(Client sender, CardGameRes cardGameRes)

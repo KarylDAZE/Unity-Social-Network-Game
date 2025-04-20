@@ -25,6 +25,7 @@ namespace UI
         protected override void OnInit(IViewData data)
         {
             Username_Text.text = Mgr.LoginMgr.Instance.Username;
+            Rank_Button.gameObject.SetActive(false);
         }
 
         protected override void BindListeners()

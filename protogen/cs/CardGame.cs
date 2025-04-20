@@ -40,10 +40,10 @@ namespace proto.CardGame
       get { return _isGameOver; }
       set { _isGameOver = value; }
     }
-    private bool _isWin = default(bool);
-    [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"isWin", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    [global::System.ComponentModel.DefaultValue(default(bool))]
-    public bool isWin
+    private int _isWin = default(int);
+    [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"isWin", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
+    public int isWin
     {
       get { return _isWin; }
       set { _isWin = value; }
@@ -72,13 +72,13 @@ namespace proto.CardGame
       get { return _playerCardId; }
       set { _playerCardId = value; }
     }
-    private int _playHp = default(int);
-    [global::ProtoBuf.ProtoMember(6, IsRequired = false, Name=@"playHp", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    private int _playerHp = default(int);
+    [global::ProtoBuf.ProtoMember(6, IsRequired = false, Name=@"playerHp", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
     [global::System.ComponentModel.DefaultValue(default(int))]
-    public int playHp
+    public int playerHp
     {
-      get { return _playHp; }
-      set { _playHp = value; }
+      get { return _playerHp; }
+      set { _playerHp = value; }
     }
     private int _selfHp = default(int);
     [global::ProtoBuf.ProtoMember(7, IsRequired = false, Name=@"selfHp", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
@@ -95,6 +95,14 @@ namespace proto.CardGame
     {
       get { return _selfScore; }
       set { _selfScore = value; }
+    }
+    private int _selfEnergy = default(int);
+    [global::ProtoBuf.ProtoMember(9, IsRequired = false, Name=@"selfEnergy", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
+    public int selfEnergy
+    {
+      get { return _selfEnergy; }
+      set { _selfEnergy = value; }
     }
     private global::ProtoBuf.IExtension extensionObject;
     global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)

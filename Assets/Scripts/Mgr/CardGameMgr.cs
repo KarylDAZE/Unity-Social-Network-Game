@@ -9,6 +9,14 @@ namespace Mgr
 {
     public class CardGameMgr : MonoBehaviour
     {
+        public enum CardId
+        {
+            attack,
+            attack2,
+            defend,
+            reflect,
+            charge
+        }
         private static CardGameMgr instance;
         public static CardGameMgr Instance
         {
@@ -51,9 +59,13 @@ namespace Mgr
             Main.Events.Publish(ProtoEventID.MatchRes, res);
         }
 
-        public void SendCardGame()
+        public void SendCardGame(CardId cardId)
         {
-
+            var info = new CardGameArg()
+            {
+                cardId = (int)cardId,
+            };
+            Main.Custom.Network.Send(info);
         }
 
         public void OnCardGame(IExtensible proto)
