@@ -138,6 +138,19 @@ namespace SK.Framework.Sockets
             Server.Send(sender, res);
         }
 
+        public static void SendMatchRes(Client sender, bool isBeginGame, int score, string playerUsername, int selfHp, int selfEnergy)
+        {
+            var res = new proto.Match.MatchRes
+            {
+                isBeginGame = isBeginGame,
+                Score = score,
+                PlayerUsername = playerUsername,
+                selfHp = selfHp,
+                selfEnergy = selfEnergy
+            };
+            Server.Send(sender, res);
+        }
+
         public static void OnCardGameArg(Client sender, IExtensible proto)
         {
             var arg = proto as CardGameArg;

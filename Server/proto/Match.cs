@@ -53,6 +53,22 @@ namespace proto.Match
       get { return _PlayerUsername; }
       set { _PlayerUsername = value; }
     }
+    private int _selfHp = default(int);
+    [global::ProtoBuf.ProtoMember(4, IsRequired = false, Name=@"selfHp", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
+    public int selfHp
+    {
+      get { return _selfHp; }
+      set { _selfHp = value; }
+    }
+    private int _selfEnergy = default(int);
+    [global::ProtoBuf.ProtoMember(5, IsRequired = false, Name=@"selfEnergy", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
+    public int selfEnergy
+    {
+      get { return _selfEnergy; }
+      set { _selfEnergy = value; }
+    }
     private global::ProtoBuf.IExtension extensionObject;
     global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
       { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }

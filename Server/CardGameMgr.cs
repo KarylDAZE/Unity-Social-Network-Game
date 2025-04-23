@@ -9,7 +9,7 @@ public static class CardGameMgr
 {
     public const int SCORE_UP = 20;
     public const int SCORE_DOWN = 10;
-    // 房间类，保存匹配到的两位玩家
+    // 房间类，保存匹配到的两位玩家信息
     public class Room
     {
         public Client? Player1 { get; set; }
@@ -38,11 +38,15 @@ public static class CardGameMgr
         reflect = 1,
         charge = -1
     }
+    public const int MAX_HP = 7;
+    public const int INITIAL_ENERGY = 2;
     // 用队列存储等待匹配的玩家
     private static Queue<Client> waitingQueue = new();
     // 存储所有房间的列表
     private static List<Room> rooms = new List<Room>();
+    // 存储房间信息的字典，key为玩家ID，value为房间对象
     private static Dictionary<int, Room> roomDict = new();
+    // 存储玩家分数的字典，key为玩家ID，value为分数
     private static Dictionary<int, int> scoreDict = new();
 
     public static void ExitCardGame(Client client)
@@ -80,12 +84,12 @@ public static class CardGameMgr
             {
                 Player1 = opponent,
                 Player2 = player,
-                Player1Hp = 7,
-                Player2Hp = 7,
+                Player1Hp = MAX_HP,
+                Player2Hp = MAX_HP,
                 Player1CardId = (CardId)(-1),
                 Player2CardId = (CardId)(-1),
-                Player1Energy = 2,
-                Player2Energy = 2,
+                Player1Energy = INITIAL_ENERGY,
+                Player2Energy = INITIAL_ENERGY,
             };
             rooms.Add(room);
             roomDict.Add(opponent.userId, room);
@@ -99,9 +103,9 @@ public static class CardGameMgr
             int playerScore = foundRows.Length > 0 ? Convert.ToInt32(foundRows[0]["score"]) : 0;
             scoreDict.Add(player.userId, playerScore);
 
-            // TODO: 向两个玩家发送房间信息
-            ServerMessageHandler.SendMatchRes(opponent, true, opponentScore, player.username);
-            ServerMessageHandler.SendMatchRes(player, true, playerScore, opponent.username);
+            // 向两个玩家发送房间信息
+            ServerMessageHandler.SendMatchRes(opponent, true, opponentScore, player.username, MAX_HP, INITIAL_ENERGY);
+            ServerMessageHandler.SendMatchRes(player, true, playerScore, opponent.username, MAX_HP, INITIAL_ENERGY);
         }
         else
         {

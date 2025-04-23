@@ -213,10 +213,12 @@ namespace UI
             if (res.isBeginGame)
             {
                 PlayerUsername_Text.text = res.PlayerUsername;
-                PlayerHp_Text.text = "7/7";
+                PlayerHp_Text.text = res.selfHp.ToString() + "/7";
                 SelfScore_Text.text = res.Score.ToString();
                 SelfUsername_Text.text = LoginMgr.Instance.Username;
-                SelfHp_Text.text = "7/7";
+                SelfHp_Text.text = res.selfHp.ToString() + "/7";
+                energy = res.selfEnergy;
+                SelfEnergy_Text.text = energy.ToString();
             }
             else
             {

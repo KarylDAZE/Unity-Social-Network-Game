@@ -7,4 +7,6 @@ message MatchRes
     required bool isBeginGame = 1;
     required int32 Score = 2;
     required string PlayerUsername = 3;
+    optional int32 selfHp = 4;
+    optional int32 selfEnergy = 5;
 }
